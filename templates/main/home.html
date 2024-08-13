@@ -8,4 +8,18 @@
 {% block content %} 
     <h1>Home Page</h1>
 
+    {% if todos %}
+        {% for todo in todos %}
+            <h3>{{todo.title}}</h3>
+            <p>{{todo.content}}</p>
+            <small>user: {{todo.user}} | </small>
+            <small>created: {{todo.created_at}}</small>
+            <p>
+                <a href="{% url 'edit-todo' id=todo.id %}">edit</a>
+                <a href="{% url 'delete-todo' id=todo.id %}">delete</a>
+            </p>
+        {% endfor %}    
+    {% else %}
+            <h3>NO TODO</h3>
+    {% endif %}
 {% endblock content %}
